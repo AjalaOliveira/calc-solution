@@ -30,7 +30,7 @@ namespace api2.Controllers
         public async Task<IActionResult> GetCompoundInterestResult([FromQuery(Name = "valorinicial")] string valorinicial,
                                                                    [FromQuery(Name = "meses")] int meses)
         {
-            return Ok(await _calculateInterestService.CalculateCompoundInterest(valorinicial, meses));
+            return Ok(await _calculateInterestService.CalculateCompoundInterestStringValue(valorinicial, meses));
         }
     }
 }

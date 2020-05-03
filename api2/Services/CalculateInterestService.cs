@@ -41,12 +41,13 @@ namespace api2.Services
             return (Math.Truncate(100 * (initialValue * (decimal)Math.Pow((1 + _interestRate), (double)months))) / 100).ToString("#0.00");
         }
 
-        public async Task<string> CalculateCompoundInterest(string initialValue, int months)
+        public async Task<string> CalculateCompoundInterestStringValue(string initialValue, int months)
         {
-            if (initialValue.Contains(",") ||
-                initialValue.ToString().Count(dot => dot == '.') > 1)
+            var validationStringParameterResult = new ValidateStringParameter().Validate(initialValue);
+
+            if (!string.IsNullOrEmpty(validationStringParameterResult))
             {
-                return "[ERRO] Valor inicial informado está em formato inválido. Valor informado '" + initialValue + "'. O Formato esperado é '0.00'";
+                return validationStringParameterResult;
             }
 
             decimal initialValueUsed = 0;
@@ -61,11 +62,11 @@ namespace api2.Services
                 return "[ERRO] Valor inicial informado está em formato inválido. Valor informado '" + initialValue + "'. O Formato esperado é '0.00'";
             }
 
-            var validationResult = new ValidateParameters().Validate(initialValueUsed, months);
+            var validationParametersResult = new ValidateParameters().Validate(initialValueUsed, months);
 
-            if (!string.IsNullOrEmpty(validationResult))
+            if (!string.IsNullOrEmpty(validationParametersResult))
             {
-                return validationResult;
+                return validationParametersResult;
             }
 
             await GetAndSetInterestRate();
