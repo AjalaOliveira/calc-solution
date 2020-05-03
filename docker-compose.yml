@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  api1:
+    image: api1
+    build:
+      "./api1"
+    ports:
+      - 4020:80
+    networks: 
+      - apis-network  
+  api2:
+    image: api2
+    build:
+      "./api2"
+    ports:
+      - 5020:80
+    networks: 
+      - apis-network
+networks:
+  apis-network:
+    driver: "bridge"
