@@ -3,7 +3,7 @@ using Xunit;
 
 namespace api2.unit.tests
 {
-    public class CalculateInterestParametersValidationTest
+    public class ValidateParametersTest
     {
 
         [Fact]

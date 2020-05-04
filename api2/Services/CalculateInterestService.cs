@@ -1,9 +1,8 @@
 using api2.ApiStartup;
 using api2.Interfaces;
-using api2.Validations;
+using api2.Tools;
 using Microsoft.Extensions.Options;
 using System;
-using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -15,7 +14,6 @@ namespace api2.Services
         private double _interestRate;
         private string _api1IntegrationStatus;
 
-
         public CalculateInterestService(IOptions<Api1Settings> api1Settings)
         {
             _api1Settings = api1Settings.Value;
@@ -23,13 +21,6 @@ namespace api2.Services
 
         public async Task<string> CalculateCompoundInterest(decimal initialValue, int months)
         {
-            var validationResult = new ValidateParameters().Validate(initialValue, months);
-
-            if (!string.IsNullOrEmpty(validationResult))
-            {
-                return validationResult;
-            }
-
             await GetAndSetInterestRate();
 
             if (!string.IsNullOrEmpty(_api1IntegrationStatus))
@@ -37,27 +28,11 @@ namespace api2.Services
                 return _api1IntegrationStatus;
             }
 
-            return (Math.Truncate(100 * (initialValue * (decimal)Math.Pow((1 + _interestRate), (double)months))) / 100).ToString("#0.00");
+            return new CalculateInterest().CalculateCompoundInterest(initialValue, _interestRate, months);
         }
 
         public async Task<string> CalculateCompoundInterestStringValue(string initialValue, int months)
         {
-            var validateParameters = new ValidateStringParameter();
-
-            var validationStringParameterResult = validateParameters.Validate(initialValue, months);
-
-            if (!string.IsNullOrEmpty(validationStringParameterResult))
-            {
-                return validationStringParameterResult;
-            }
-
-            var validDecimalParameter = validateParameters.ValidateDecimal(initialValue);
-
-            if (!string.IsNullOrEmpty(validDecimalParameter))
-            {
-                return validDecimalParameter;
-            }
-
             await GetAndSetInterestRate();
 
             if (!string.IsNullOrEmpty(_api1IntegrationStatus))
@@ -65,10 +40,7 @@ namespace api2.Services
                 return _api1IntegrationStatus;
             }
 
-            initialValue = initialValue.Replace(".", ",");
-            var initialValueUsed = decimal.Parse(initialValue, CultureInfo.GetCultureInfo("pt-BR"));
-
-            return (Math.Truncate(100 * (initialValueUsed * (decimal)Math.Pow((1 + _interestRate), (double)months))) / 100).ToString("#0.00");
+            return new CalculateInterest().CalculateCompoundInterestStringValue(initialValue, _interestRate, months);
         }
 
         private async Task GetAndSetInterestRate()
