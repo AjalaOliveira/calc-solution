@@ -15,7 +15,7 @@ namespace api2.unit.tests
 
             var result = validateParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.", result);
+            Assert.Equal($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.", result);
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace api2.unit.tests
 
             var result = validateParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.", result);
+            Assert.Equal($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.", result);
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace api2.unit.tests
 
             var result = validateParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace api2.unit.tests
 
             var result = validateParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
         }
 
         [Fact]
@@ -63,7 +63,7 @@ namespace api2.unit.tests
 
             var result = validateParameters.Validate(initialValue, months);
 
-            Assert.Contains(string.Empty, result);
+            Assert.Equal(string.Empty, result);
         }
 
         [Theory]
@@ -77,7 +77,7 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
+            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
         }
 
         [Theory]
@@ -93,23 +93,20 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
+            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
         }
 
         [Theory]
         [InlineData("A")]
         [InlineData("%")]
         [InlineData("/")]
-        [InlineData("0.1A")]
-        [InlineData("1.0%")]
-        [InlineData("1.1/")]
         public void ValidateStringParameters_ShoulReturnErroWhenInitialValueIsNotNumber(string initialValue)
         {
             ValidateStringParameter validateStringParameters = new ValidateStringParameter();
 
             var result = validateStringParameters.ValidateDecimal(initialValue);
 
-            Assert.Contains("0", result.ToString());
+            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
         }
 
         [Theory]
@@ -123,7 +120,7 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
         }
 
         [Theory]
@@ -137,7 +134,7 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.Validate(initialValue, months);
 
-            Assert.Contains($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
         }
 
         [Fact]
@@ -148,7 +145,7 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.ValidateDecimal(initialValue);
 
-            Assert.Contains($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{decimal.Parse(initialValue).ToString("#0.00")}'.", result);
+            Assert.Equal($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{decimal.Parse(initialValue).ToString("#0.00")}'.", result);
         }
 
         [Fact]
@@ -159,7 +156,7 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.ValidateDecimal(initialValue);
 
-            Assert.Contains(string.Empty, result);
+            Assert.Equal(string.Empty, result);
         }
 
         [Theory]
@@ -173,7 +170,7 @@ namespace api2.unit.tests
 
             var result = validateStringParameters.Validate(initialValue, months);
 
-            Assert.Contains(string.Empty, result);
+            Assert.Equal(string.Empty, result);
         }
     }
 }

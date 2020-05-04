@@ -11,7 +11,7 @@ namespace api2.Validations
             if (initialValue.Contains(",") ||
                 initialValue.ToString().Count(dot => dot == '.') > 1)
             {
-                return $"[ERRO] Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'";
+                return $"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'";
             }
 
             if (months <= 0)
