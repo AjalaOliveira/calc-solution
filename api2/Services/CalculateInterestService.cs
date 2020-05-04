@@ -63,7 +63,7 @@ namespace api2.Services
                         }
                         catch (Exception)
                         {
-                            _api1IntegrationStatus = $"[API1] - O serviço integrado retornou um valor em formato inválido. Resposta: {response}";
+                            _api1IntegrationStatus = "[API1] - O serviço integrado retornou um valor em formato inválido.";
                         }
                     }
                 }

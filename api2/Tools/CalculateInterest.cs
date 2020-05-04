@@ -60,7 +60,7 @@ namespace api2.Tools
         {
             if (interestRate < 0)
             {
-                return $"[API1] - O serviço integrado retornou um valor para taxa de juros negativo. Resposta: {interestRate}";
+                return "[API1] - O serviço integrado retornou um valor para taxa de juros negativo.";
             }
             return string.Empty;
         }

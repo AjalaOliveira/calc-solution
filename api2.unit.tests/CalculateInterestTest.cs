@@ -17,7 +17,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"105,10", result);
+            Assert.Equal($"105.10", result);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"105,10", result);
+            Assert.Equal($"105.10", result);
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"0,10", result);
+            Assert.Equal($"0.10", result);
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.", result);
+            Assert.Equal("[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0).", result);
         }
 
         [Fact]
@@ -69,7 +69,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.", result);
+            Assert.Equal("[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0).", result);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal("[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0).", result);
         }
 
         [Fact]
@@ -95,7 +95,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal("[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0).", result);
         }
 
         [Fact]
@@ -108,12 +108,8 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterest(initialValue, interestRate, months);
 
-            Assert.Equal($"[API1] - O serviço integrado retornou um valor para taxa de juros negativo. Resposta: {interestRate}", result);
+            Assert.Equal("[API1] - O serviço integrado retornou um valor para taxa de juros negativo.", result);
         }
-
-
-
-
 
         [Theory]
         [InlineData("0,1")]
@@ -127,7 +123,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
+            Assert.Equal("[ERRO] O Valor inicial informado está em formato inválido.", result);
         }
 
         [Theory]
@@ -144,7 +140,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result);
+            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido.", result);
         }
 
         [Theory]
@@ -159,7 +155,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'", result.ToString());
+            Assert.Equal("[ERRO] O Valor inicial informado está em formato inválido.", result.ToString());
         }
 
         [Theory]
@@ -174,7 +170,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal("[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0).", result);
         }
 
         [Theory]
@@ -189,7 +185,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.", result);
+            Assert.Equal("[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0).", result);
         }
 
         [Fact]
@@ -202,7 +198,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{decimal.Parse(initialValue).ToString("#0.00")}'.", result);
+            Assert.Equal("[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0).", result);
         }
 
         [Fact]
@@ -215,7 +211,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal("0,01", result);
+            Assert.Equal("0.01", result);
         }
 
         [Theory]
@@ -229,7 +225,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal("0,10", result);
+            Assert.Equal("0.10", result);
         }
 
         [Theory]
@@ -242,7 +238,7 @@ namespace api2.unit.tests
 
             var result = calculateInterest.CalculateCompoundInterestStringValue(initialValue, interestRate, months);
 
-            Assert.Equal($"[API1] - O serviço integrado retornou um valor para taxa de juros negativo. Resposta: {interestRate}", result);
+            Assert.Equal("[API1] - O serviço integrado retornou um valor para taxa de juros negativo.", result);
         }
     }
 }

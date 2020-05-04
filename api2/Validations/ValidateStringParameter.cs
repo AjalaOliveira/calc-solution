@@ -11,12 +11,12 @@ namespace api2.Validations
             if (initialValue.Contains(",") ||
                 initialValue.ToString().Count(dot => dot == '.') > 1)
             {
-                return $"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'";
+                return "[ERRO] O Valor inicial informado está em formato inválido.";
             }
 
             if (months <= 0)
             {
-                return $"[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0). Valor informado '{months}'.";
+                return "[ERRO] O Valor informado no parâmetro 'meses' deve ser um número inteiro maior que zero (0).";
             }
 
             return string.Empty;
@@ -30,13 +30,13 @@ namespace api2.Validations
                 var value = decimal.Parse(initialValue, CultureInfo.GetCultureInfo("pt-BR"));
                 if (value <= 0)
                 {
-                    return $"[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0). Valor informado '{initialValue}'.";
+                    return "[ERRO] O Valor inicial informado deve ser um número decimal maior que zero (0).";
                 }
                 return string.Empty;
             }
             catch (Exception)
             {
-                return $"[ERRO] O Valor inicial informado está em formato inválido. Valor informado '{initialValue}'. O Formato esperado é '0.00'";
+                return "[ERRO] O Valor inicial informado está em formato inválido.";
             }
         }
     }
