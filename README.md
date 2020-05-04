@@ -3,7 +3,7 @@
 API1 desenvolvida em ASP.NET Core 3.1 com uma funcionalidade:
 - Endpoint /taxaJuros: Retornar a taxa de juros fixa no código.
 
-API2 desenvolvida em ASP.NET Core 3.1 integrada com a API1 com duas funcionalidade:
+API2 desenvolvida em ASP.NET Core 3.1 integrada com a API1 com três funcionalidades:
 - Endpoint /showmethecode: Retornar a URL do repositório da aplicação no GitHub.
 
 - Endpoint /calculajuros: Retornar o resultado de juros compostos aplicados ao valor inicial, em decimal, e a quantidade de meses informado, considerando a taxa retornada da API1.
