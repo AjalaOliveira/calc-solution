@@ -6,15 +6,9 @@ namespace api2.Services
 {
     public class ShowCodeService : IShowCodeService
     {
-        private readonly RepositorySettings _repositorySettings;
-
-        public ShowCodeService(IOptions<RepositorySettings> repositorySettings)
-        {
-            _repositorySettings = repositorySettings.Value;
-        }
         public string ShowCodeRepositoryOnGitHub()
         {
-            return _repositorySettings.Address;
+            return "https://github.com/AjalaOliveira/calc-solution";
         }
     }
 }

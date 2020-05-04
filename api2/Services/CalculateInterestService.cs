@@ -4,7 +4,6 @@ using api2.Validations;
 using Microsoft.Extensions.Options;
 using System;
 using System.Globalization;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -43,30 +42,20 @@ namespace api2.Services
 
         public async Task<string> CalculateCompoundInterestStringValue(string initialValue, int months)
         {
-            var validationStringParameterResult = new ValidateStringParameter().Validate(initialValue);
+            var validateParameters = new ValidateStringParameter();
+
+            var validationStringParameterResult = validateParameters.Validate(initialValue, months);
 
             if (!string.IsNullOrEmpty(validationStringParameterResult))
             {
                 return validationStringParameterResult;
             }
 
-            decimal initialValueUsed = 0;
+            var validDecimalParameter = validateParameters.ValidateDecimal(initialValue);
 
-            try
+            if (!string.IsNullOrEmpty(validDecimalParameter))
             {
-                initialValue = initialValue.Replace(".", ",");
-                initialValueUsed = decimal.Parse(initialValue, CultureInfo.GetCultureInfo("pt-BR"));
-            }
-            catch (Exception)
-            {
-                return "[ERRO] Valor inicial informado está em formato inválido. Valor informado '" + initialValue + "'. O Formato esperado é '0.00'";
-            }
-
-            var validationParametersResult = new ValidateParameters().Validate(initialValueUsed, months);
-
-            if (!string.IsNullOrEmpty(validationParametersResult))
-            {
-                return validationParametersResult;
+                return validDecimalParameter;
             }
 
             await GetAndSetInterestRate();
@@ -75,6 +64,9 @@ namespace api2.Services
             {
                 return _api1IntegrationStatus;
             }
+
+            initialValue = initialValue.Replace(".", ",");
+            var initialValueUsed = decimal.Parse(initialValue, CultureInfo.GetCultureInfo("pt-BR"));
 
             return (Math.Truncate(100 * (initialValueUsed * (decimal)Math.Pow((1 + _interestRate), (double)months))) / 100).ToString("#0.00");
         }
@@ -99,7 +91,7 @@ namespace api2.Services
                         }
                         catch (Exception)
                         {
-                            _api1IntegrationStatus = "[API1] - O serviço integrado retornou um valor em formato inválido. Resposta: " + response;
+                            _api1IntegrationStatus = $"[API1] - O serviço integrado retornou um valor em formato inválido. Resposta: {response}";
                         }
                     }
                 }

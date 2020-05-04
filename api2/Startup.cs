@@ -25,9 +25,6 @@ namespace api2
 
             ConfigureIntegrationServices(services);
 
-            var repositorySettings = Configuration.GetSection("RepositorySettings");
-            services.Configure<RepositorySettings>(repositorySettings);
-
             services.ConfigureScopedServices();
 
             services.AddSwaggerGen(c =>

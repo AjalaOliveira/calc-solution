@@ -14,7 +14,6 @@ namespace api2.ApiStartup
         private static void ResolveServices(this IServiceCollection services)
         {
             services.AddTransient<ICalculateInterestService, CalculateInterestService>();
-            services.AddTransient<IShowCodeService, ShowCodeService>();
         }
     }
 }

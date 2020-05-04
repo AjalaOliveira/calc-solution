@@ -2,3 +2,7 @@
 /api1/obj
 /api2/bin
 /api2/obj
+/api1.unit.tests/bin/Debug/netcoreapp3.1
+/api1.unit.tests/obj
+/api2.unit.tests/bin/Debug/netcoreapp3.1
+/api2.unit.tests/obj

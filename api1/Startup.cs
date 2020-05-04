@@ -1,12 +1,9 @@
-using api1.ApiStartup;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System.Globalization;
 
 namespace api1
 {
@@ -23,11 +20,6 @@ namespace api1
         {
             services.AddControllers();
 
-            var interestRateSettings = Configuration.GetSection("InterestRateSettings");
-            services.Configure<InterestRateSettings>(interestRateSettings);
-
-            services.ConfigureScopedServices();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API1", Version = "v1" });
@@ -41,14 +33,6 @@ namespace api1
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            var supportedCultures = new[] { new CultureInfo("pt-BR") };
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
 
             app.UseRouting();
 
