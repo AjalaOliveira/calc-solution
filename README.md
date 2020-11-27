@@ -14,7 +14,7 @@ Comandos executar a imagem:
    - git clone https://github.com/AjalaOliveira/calc-solution
    - cd calc-solution
    - docker-compose build
-   - docker-compose run
+   - docker-compose up
    
 API1: http://localhost:4020/
 API2: http://localhost:5020/
